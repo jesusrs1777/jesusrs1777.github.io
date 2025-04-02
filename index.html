@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinosaurios</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ecf0f1;
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilo del título */
+        h1 {
+            background: linear-gradient(135deg, #3498db, #8e44ad);
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 30px;
+            font-size: 3em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: #2980b9;
+            animation: slide 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes slide {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* Estilo del menú */
+        .menu {
+            background: linear-gradient(135deg, #3498db, #8e44ad);
+            padding: 15px 0;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .menu a {
+            text-decoration: none;
+            margin: 10px 20px;
+            padding: 12px 25px;
+            background-color: transparent;
+            color: white;
+            border-radius: 5px;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .menu a::before {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 3px;
+            background-color: white;
+            bottom: -5px;
+            left: 50%;
+            transition: width 0.3s, left 0.3s;
+        }
+
+        .menu a:hover::before {
+            width: 100%;
+            left: 0;
+        }
+
+        .menu a:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+            color: #2980b9;
+        }
+
+        .menu .icon {
+            display: none;
+            font-size: 2em;
+            color: white;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .menu a {
+                display: none;
+                width: 100%;
+                text-align: center;
+                margin: 10px 0;
+            }
+            .menu a.show {
+                display: block;
+            }
+            .menu .icon {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+        }
+
+        /* Estilo de las categorías de dinosaurios */
+        .dino {
+            max-width: 700px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            display: none;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .dino.show {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Estilo de las imágenes */
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Estilos de los títulos dentro de las categorías */
+        .dino h2 {
+            color: #2980b9;
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        .dino p {
+            font-size: 1.1em;
+            color: #7f8c8d;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        /* Enlaces de dinosaurios */
+        .dino a {
+            color: #2980b9;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .dino a:hover {
+            color: #e74c3c;
+        }
+    </style>
+    <script>
+        function mostrarCategoria(id) {
+            var categorias = document.getElementsByClassName("dino");
+            for (var i = 0; i < categorias.length; i++) {
+                categorias[i].classList.remove("show");
+            }
+            document.getElementById(id).classList.add("show");
+        }
+
+        function toggleMenu() {
+            var links = document.querySelectorAll('.menu a');
+            links.forEach(link => link.classList.toggle('show'));
+        }
+    </script>
+</head>
+<body>
+    <h1>Explorando los Dinosaurios</h1>
+    <div class="menu">
+        <a href="#" onclick="mostrarCategoria('carnivoros')">Carnívoros</a>
+        <a href="#" onclick="mostrarCategoria('herbivoros')">Herbívoros</a>
+        <a href="#" onclick="mostrarCategoria('acuaticos')">Acuáticos</a>
+        <a href="#" onclick="mostrarCategoria('voladores')">Voladores</a>
+        <span class="icon" onclick="toggleMenu()">&#9776;</span>
+    </div>
+    <!-- Carnívoros -->
+    <div id="carnivoros" class="dino">
+        <h2><a href="https://es.wikipedia.org/wiki/Tyrannosaurus" target="_blank">Tyrannosaurus Rex</a></h2>
+        <img src="https://static01.nyt.com/images/2024/01/11/multimedia/11tb-trex-cousin-01-tjkc/11tb-trex-cousin-01-tjkc-superJumbo.jpg" alt="Tyrannosaurus Rex">
+        <p>El Tyrannosaurus Rex fue uno de los carnívoros más grandes y temidos del período Cretácico. Se caracterizaba por su gran tamaño y poderosas mandíbulas.</p>
+        <h2><a href="https://es.wikipedia.org/wiki/Velociraptor" target="_blank">Velociraptor</a></h2>
+        <img src="https://media.australian.museum/media/dd/images/Some_image.width-1200.cf0b1ef.jpg" alt="Velociraptor">
+        <p>El Velociraptor era un dinosaurio pequeño, pero extremadamente ágil y peligroso, conocido por su velocidad y garras afiladas.</p>
+        <h2><a href="https://es.wikipedia.org/wiki/Allosaurus" target="_blank">Allosaurus</a></h2>
+        <img src="https://www.nps.gov/dino/learn/nature/images/allosaurus-fragilis_2.jpg" alt="Allosaurus">
+        <p>El Allosaurus vivió durante el Jurásico, y era uno de los carnívoros más grandes de su tiempo. Sus dientes afilados lo convertían en un temido depredador.</p>
+        <h2><a href="https://es.wikipedia.org/wiki/Giganotosaurus" target="_blank">Giganotosaurus</a></h2>
+        <img src="https://preview.redd.it/i-feel-like-they-did-the-giganotosaurus-dirty-in-dominion-i-v0-i4eaalj2ddnc1.jpeg?width=1080&crop=smart&auto=webp&s=7b00b0f1bbbc5ae238c5ad2c2445f603d00f5982" alt="Giganotosaurus">
+        <p>El Giganotosaurus fue uno de los dinosaurios carnívoros más grandes de todos los tiempos, viviendo durante el Cretácico.</p>
+    </div>
+    <!-- Herbívoros -->
+    <div id="herbivoros" class="dino">
+        <h2><a href="https://es.wikipedia.org/wiki/Triceratops" target="_blank">Triceratops</a></h2>
+        <img src="https://static.wikia.nocookie.net/jurassicworld-evolution/images/8/85/Triceratops_JWE2_Profile.png/revision/latest?cb=20220613222443" alt="Triceratops">
+        <p>El Triceratops es famoso por sus tres cuernos y su gran collar óseo que lo protegía de los depredadores. Era un herbívoro del Cretácico tardío.</p>
+        <h2><a href="https://es.wikipedia.org/wiki/Brachiosaurus" target="_blank">Brachiosaurus</a></h2>
+        <img src="https://www.thoughtco.com/thmb/GIEDp80BQzKLa_vjCdZeVYaMxuI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-680791823-59af09edaad52b0010486221.jpg" alt="Brachiosaurus">
+        <p>El Brachiosaurus era un dinosaurio herbívoro de gran tamaño, con un cuello largo que le permitía alimentarse de las copas de los árboles más altos.</p>
+        <h2><a href="https://es.wikipedia.org/wiki/Stegosaurus" target="_blank">Stegosaurus</a></h2>
+        <img src="https://cdn.britannica.com/59/242659-050-75430D8A/Outdoor-statue-of-Stegosaurus-dinosaur.jpg" alt="Stegosaurus">
+        <p>El Stegosaurus es conocido por sus placas óseas en la espalda y sus púas en la cola. Vivió durante el Jurásico y era un herbívoro pacífico.</p>
+        <h2><a href="https://es.wikipedia.org/wiki/Parasaurolophus" target="_blank">Parasaurolophus</a></h2>
+        <img src="https://static.wikia.nocookie.net/jurassicpark/images/d/d1/JWD_Parasaurolophus.png/revision/latest?cb=20220618082154" alt="Parasaurolophus">
+        <p>El Parasaurolophus es conocido por su distintiva cresta en la cabeza. Era un dinosaurio herbívoro que vivió en el Cretácico.</p>
+    </div>
+    <!-- Acuáticos -->
+    <div id="acuaticos" class="dino">
+        <h2><a href="https://es.wikipedia.org/wiki/Ichthyosaurus" target="_blank">Ichthyosaurus</a></h2>
+        <img src="https://cdn.britannica.com/36/88736-050-BB0E9DF9/Ichthyosaurus.jpg" alt="Ichthyosaurus">
+        <p>El Ichthyosaurus vivió en los océanos durante el Mesozoico. Sus características lo hacían similar a los delfines modernos, adaptado a la vida marina.</p>
+        <h2><a href="https://es.wikipedia.org/wiki/Liopleurodon" target="_blank">Liopleurodon</a></h2>
+        <img src="https://images.dinosaurpictures.org/Liopleurodon_Ferox_by_Stalio_3057.jpg" alt="Liopleurodon">
+        <p>El Liopleurodon fue un gigantesco reptil marino que cazaba en los océanos. Era un depredador eficiente con una poderosa mandíbula.</p>
+        <h2><a href="https://es.wikipedia.org/wiki/Pliosaurus" target="_blank">Pliosaurus</a></h2>
+        <img src="https://www.prehistoric-wildlife.com/wp-content/uploads/pliosaurus.jpg" alt="Pliosaurus">
+        <p>El Pliosaurus era un reptil marino que cazaba peces y otros reptiles marinos. Vivió en el Jurásico.</p>
+    </div>
+    <!-- Voladores -->
+    <div id="voladores" class="dino">
+        <h2><a href="https://es.wikipedia.org/wiki/Pteranodon" target="_blank">Pteranodon</a></h2>
+        <img src="https://www.mundoprehistorico.com/wp-content/uploads/Pteranodon-01.jpg.webp" alt="Pteranodon">
+        <p>El Pteranodon fue un pterosaurio del Cretácico, conocido por su enorme envergadura de alas, lo que le permitía planear largas distancias sobre los océanos.</p>
+        <h2><a href="https://es.wikipedia.org/wiki/Pterodaustro" target="_blank">Pterodaustro</a></h2>
+        <img src="https://static.wikia.nocookie.net/prehistrico/images/4/4d/DrYvEvtX0AIXh16.jpg/revision/latest?cb=20210515180610&path-prefix=es" alt="Pterodaustro">
+        <p>El Pterodaustro vivió durante el Cretácico y tenía un pico largo y delgado con dientes que utilizaba para filtrar el agua en busca de alimento.</p>
+        <h2><a href="https://es.wikipedia.org/wiki/Quetzalcoatlus" target="_blank">Quetzalcoatlus</a></h2>
+        <img src="https://media.hswstatic.com/eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL3NodXR0ZXJzdG9jay0yMDkwMTc0NzUyLmpwZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6ODI4fX19" alt="Quetzalcoatlus">
+        <p>El Quetzalcoatlus fue uno de los pterosaurios más grandes que jamás haya existido, con un alcance de alas de hasta 10 metros.</p>
+    </div>
+</body>
+</html>
